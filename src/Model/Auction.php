@@ -3,25 +3,27 @@ namespace Alura\Auction\Model;
 
 class Auction
 {
-    /** @var User  */
-    private $user;
+    /** @var Bid[] */
+    private $bids;
+    /** @var string */
+    private $description;
 
-    /**@var fload */
-    private $value;
-
-    public function __construct(User $user, float $value
+    public function __construct(string $description)
     {
-        $this->user = $user;
-        $this->value = $value;
+        $this->description = $description;
+	$this->bids = [];
     }
 
-    public function getUser(): User
+    public function receivesBids(Bid $bid)
     {
-        return $this->user;            
+        $this->bids[] = $bid;
     }
 
-    public function getValue(): float
+    /**
+     * @return Bid[]
+     */
+    public function getBids():array
     {
-        return $this->value;
+	    return $this->bids;
     }
 }
